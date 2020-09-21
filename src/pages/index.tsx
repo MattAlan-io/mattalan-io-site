@@ -1,42 +1,26 @@
-import React, { useMemo } from 'react'
-import { Link } from 'gatsby'
-import VisibilitySensor from 'react-visibility-sensor'
-import { ParallaxProvider, Parallax } from 'react-scroll-parallax'
+import React, { useMemo } from 'react';
+import { Link } from 'gatsby';
+import VisibilitySensor from 'react-visibility-sensor';
+import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 
-import Layout from '../components/layout'
-import Image from '../components/logo'
-import SEO from '../components/seo'
-import { Colours } from '../style/colours'
-import Typography from '../components/typography/typography'
-import { Spacing } from '../style/spacing'
+import Image from '../components/logo';
+import SEO from '../components/seo';
 
-import MDImage from '../images/md.png'
-import { Spring, config } from 'react-spring/renderprops-universal'
-import {
-  DeviceWidth,
-  useDeviceSize,
-  byDeviceWidth,
-} from '../hooks/useDeviceSize'
-import { Col, Row } from '../components/grid'
+import MDImage from '../images/md.png';
+import { Spring, config } from 'react-spring/renderprops-universal';
+import { DeviceWidth, useDeviceSize, byDeviceWidth } from '../hooks/useDeviceSize';
 
 const Sections = {
   about: 'about',
   founders: 'founders',
   skills: 'skills',
-}
+};
 
-const Section = ({ children, style, id }) => (
-  <section
-    id={id}
-    style={{
-      width: '100%',
-      paddingTop: Spacing.xlarge,
-      ...style,
-    }}
-  >
+const Section = ({ children, className, id }) => (
+  <section id={id} className={className}>
     {children}
   </section>
-)
+);
 
 const Content = ({ center = false, children, style = {} }) => {
   return (
@@ -50,79 +34,48 @@ const Content = ({ center = false, children, style = {} }) => {
     >
       {children}
     </div>
-  )
-}
+  );
+};
 
-const Card = ({ children, style = {} }) => (
-  <div style={{ display: 'inline-block', padding: Spacing.xlarge, ...style }}>
-    {children}
-  </div>
-)
+const Card = ({ children }) => <div className="inline-block pa-10">{children}</div>;
 
 const Founder = ({ name, imageSrc }) => (
   <Card>
-    <img
-      src={imageSrc}
-      style={{ borderRadius: '50%', maxWidth: '150px', display: 'block' }}
-    />
-    <Typography inline p>
-      {name}
-    </Typography>
+    <img src={imageSrc} style={{ borderRadius: '50%', maxWidth: '150px', display: 'block' }} />
+    <p>{name}</p>
   </Card>
-)
+);
 
 const Skill = ({ name, style = {} }) => (
   <Card style={style}>
-    <Typography inline h3>
-      {name}
-    </Typography>
+    <h3>{name}</h3>
   </Card>
-)
+);
 
 const AboutSection = () => {
-  const [deviceWidth] = useDeviceSize()
-  const interpolate = byDeviceWidth(deviceWidth)
+  const [deviceWidth] = useDeviceSize();
+  const interpolate = byDeviceWidth(deviceWidth);
 
   return (
-    <Section
-      id={Sections.about}
-      style={{ color: Colours.white, backgroundColor: Colours.darkGrey }}
-    >
+    <Section id={Sections.about} className="bg-maio-grey text-white">
       <Content>
-        <Typography h1 alignRight>
-          MattAlan.io
-        </Typography>
-        <Row>
-          <Col sm={12} md={4} >
-            <Image />
-          </Col>
-          <Col>
-            <Typography h1>A digital force to be reckoned with.</Typography>
-            <Typography p>With years of FTSE 100 & 250 experience.</Typography>
-          </Col>
-        </Row>
+        <h1>MattAlan.io</h1>
+        <div>
+          <Image />
+          <h1>A digital force to be reckoned with.</h1>
+          <p>With years of FTSE 100 & 250 experience.</p>
+        </div>
       </Content>
     </Section>
-  )
-}
+  );
+};
 
 const FoundersSection = () => {
-  const [deviceWidth] = useDeviceSize()
-  const interpolate = byDeviceWidth(deviceWidth)
+  const [deviceWidth] = useDeviceSize();
+  const interpolate = byDeviceWidth(deviceWidth);
 
   return (
-    <Section
-      id={Sections.founders}
-      style={{
-        color: Colours.black,
-        backgroundColor: Colours.white,
-        height: interpolate({
-          [DeviceWidth.Desktop]: '500px',
-          [DeviceWidth.Tablet]: '800px',
-        }),
-        paddingTop: Spacing.xxlarge,
-      }}
-    >
+    <Section id={Sections.founders} className="text-black bg-white pt-10">
       <VisibilitySensor>
         {({ isVisible }) => (
           <Spring
@@ -134,7 +87,7 @@ const FoundersSection = () => {
           >
             {style => (
               <Content center style={style}>
-                <Typography h1>Founders</Typography>
+                <h1>Founders</h1>
                 <Founder name="Matt" imageSrc={MDImage} />
                 <Founder name="Alan" imageSrc={MDImage} />
               </Content>
@@ -143,42 +96,33 @@ const FoundersSection = () => {
         )}
       </VisibilitySensor>
     </Section>
-  )
-}
+  );
+};
 
 function getRandomInt(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1)) + min
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 const SkillsSection = () => {
-  const skills = [
-    'Project Management',
-    'Web Development',
-    'Dev Ops',
-    'Cloud Infrastructure',
-    'Database Design',
-  ]
+  const skills = ['Project Management', 'Web Development', 'Dev Ops', 'Cloud Infrastructure', 'Database Design'];
 
   const getRandomOffsets = () => ({
     // x: [getRandomInt(-50, 50), getRandomInt(-50, 50)],
     x: [getRandomInt(-100, 0), getRandomInt(0, 100)],
-  })
+  });
 
   const getRandomScaleProps = () => {
-    const scale = getRandomInt(1, 10)
-    const xTransformBound = 100 * (1 / scale)
-    const x = [
-      getRandomInt(-1 * xTransformBound, 0),
-      getRandomInt(0, xTransformBound),
-    ]
+    const scale = getRandomInt(1, 10);
+    const xTransformBound = 100 * (1 / scale);
+    const x = [getRandomInt(-1 * xTransformBound, 0), getRandomInt(0, xTransformBound)];
 
     return {
       color: 'transparent',
       textShadow: '0 0 5px rgba(0,0,0,0.5)',
       x,
       transform: `scale(${scale})`,
-    }
-  }
+    };
+  };
 
   const skillProps = useMemo(
     () =>
@@ -187,17 +131,10 @@ const SkillsSection = () => {
         skill,
       })),
     []
-  )
+  );
 
   return (
-    <Section
-      id={Sections.skills}
-      style={{
-        color: Colours.white,
-        backgroundColor: Colours.lightBlue,
-        height: '1000px',
-      }}
-    >
+    <Section id={Sections.skills} className="font-white bg-maio-blue">
       <VisibilitySensor partialVisibility>
         {({ isVisible }) => (
           <Spring
@@ -209,7 +146,7 @@ const SkillsSection = () => {
           >
             {style => (
               <Content center style={style}>
-                <Typography h1>Skills</Typography>
+                <h1>Skills</h1>
                 {skillProps.map(({ parallax, skill }) => (
                   <Parallax key={skill} {...parallax}>
                     <Skill name={skill} />
@@ -221,29 +158,19 @@ const SkillsSection = () => {
         )}
       </VisibilitySensor>
     </Section>
-  )
-}
+  );
+};
 
 const Background = ({ children }) => (
-  <div
-    style={{
-      backgroundColor: Colours.darkGrey,
-      position: 'absolute',
-      top: 0,
-      right: 0,
-      left: 0,
-      bottom: 0,
-    }}
-  >
+  <div className="inset-0 bg-maio-grey absolute">
     {children}
   </div>
-)
+);
 
 const IndexPage = () => {
   return (
     <ParallaxProvider>
       <Background>
-        <Layout>
           <SEO title="Home" />
 
           <Parallax y={[0, 0]}>
@@ -255,10 +182,9 @@ const IndexPage = () => {
           <Parallax y={[100, 200]}>
             <FoundersSection />
           </Parallax>
-        </Layout>
       </Background>
     </ParallaxProvider>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;
