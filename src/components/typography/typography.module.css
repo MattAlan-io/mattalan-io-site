@@ -1,0 +1,11 @@
+
+/* Raleway (Heading) & Lato (Body) */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+}
+
+p {
+  font-family: 'Lato', sans-serif;
+}

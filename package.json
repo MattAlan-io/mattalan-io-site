@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "bootstrap": "^5.0.0-alpha1",
     "gatsby": "^2.24.54",
     "gatsby-image": "^2.4.17",
     "gatsby-plugin-manifest": "^2.4.28",
@@ -16,10 +17,14 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "react-spring": "^8.0.27",
+    "react-visibility-sensor": "^5.1.1"
   },
   "devDependencies": {
-    "prettier": "2.1.1"
+    "popper.js": "^1.16.1",
+    "prettier": "2.1.1",
+    "react-scroll-parallax": "^2.3.4"
   },
   "keywords": [
     "gatsby"
