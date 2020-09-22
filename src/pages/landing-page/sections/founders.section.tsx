@@ -1,3 +1,4 @@
+import { css } from '@emotion/core';
 import React from 'react';
 
 import Card from '../../../components/card';
@@ -14,7 +15,7 @@ const Founder = ({ name, imageSrc }) => (
 
 const FoundersSection = () => {
   return (
-    <Section id="founders" className="text-black bg-white">
+    <Section id="founders" className="text-black bg-white" css={css`padding-top: 10em;`}>
       <ContentWrapper>
         <h2 className="text-3xl font-bold text-center mb-6">Founders</h2>
         <div className="flex align-center justify-evenly">

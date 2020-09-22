@@ -73,7 +73,6 @@ function IntroSection({ onAnimationCompleting }: Props) {
   // });
 
   const handleGoToContact = () => {
-    console.log('scrooooll');
     scrollToSection('contact', 'end');
   }
 

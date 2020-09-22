@@ -5,6 +5,7 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -15,6 +16,13 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    // {
+    //   resolve: 'gatsby-background-image-es5',
+    //   options: {
+    //     // add your own characters to escape, replacing the default ':/'
+    //     specialChars: '/:',
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

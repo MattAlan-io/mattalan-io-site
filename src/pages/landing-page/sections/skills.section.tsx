@@ -6,6 +6,8 @@ import ContentWrapper from '../../../components/content-wrapper';
 import Section from '../../../components/section';
 import { getRandomInt, LORUM_IPSUM, LORUM_IPSUM_MEDIUM } from '../../../util/util';
 import VisibilitySensor from 'react-visibility-sensor';
+import LaptopImage from '../../../image-components/laptop.image';
+import { css } from '@emotion/core';
 
 const Skill = ({ name, style = {}, flip = false }) => {
   const textDirection = !flip ? 'text-left' : 'text-right';
@@ -55,10 +57,18 @@ const SkillsSection = () => {
   );
 
   return (
-    <Section id="skills" className="font-white bg-maio-blue text-center">
+    <Section id="skills" className="font-white bg-maio-blue text-cente mb-10">
+
       <VisibilitySensor partialVisibility>
         {({ isVisible }) => (
-          <div>
+          <div className="relative">
+            <Parallax y={[-6, 20]}>
+            <LaptopImage css={css`
+              height: 1100px;
+            `}>
+              </LaptopImage>
+            </Parallax>
+            <div className="absolute top-0 mt-10">
             <ContentWrapper>
               <h2 className="text-3xl text-white text-left font-bold mb-4 text-center">Our areas of expertise</h2>
             </ContentWrapper>
@@ -77,7 +87,9 @@ const SkillsSection = () => {
                     ))}
                   </ContentWrapper>
               )}
+              
             </Spring>
+            </div>
           </div>
         )}
       </VisibilitySensor>
