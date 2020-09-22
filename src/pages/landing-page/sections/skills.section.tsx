@@ -4,14 +4,25 @@ import { Spring } from 'react-spring/renderprops';
 import Card from '../../../components/card';
 import ContentWrapper from '../../../components/content-wrapper';
 import Section from '../../../components/section';
-import { getRandomInt, LORUM_IPSUM } from '../../../util/util';
+import { getRandomInt, LORUM_IPSUM, LORUM_IPSUM_MEDIUM } from '../../../util/util';
 import VisibilitySensor from 'react-visibility-sensor';
 
-const Skill = ({ name, style = {} }) => (
-  <Card>
-    <h3>{name}</h3>
-  </Card>
-);
+const Skill = ({ name, style = {}, flip = false }) => {
+  const textDirection = !flip ? 'text-left' : 'text-right';
+  const titleDirection = flip ? 'text-left' : 'text-right';
+
+  const items = [
+      <h3 className={`${titleDirection} text-2xl py-3 font-bold flex-1`}>{name}</h3>,
+    <p className={`${textDirection}`}>{LORUM_IPSUM_MEDIUM}</p>
+  ];
+
+
+  return (
+    <div className={`text-white grid grid-cols-2 gap-5 items-center py-10`}>
+      { flip ? [...items].reverse() : items }
+    </div>
+  );
+};
 
 const SkillsSection = () => {
   const skills = ['Project Management', 'Web Development', 'Dev Ops', 'Cloud Infrastructure', 'Database Design'];
@@ -44,33 +55,30 @@ const SkillsSection = () => {
   );
 
   return (
-    <Section id="skills" className="font-white bg-maio-blue">
+    <Section id="skills" className="font-white bg-maio-blue text-center">
       <VisibilitySensor partialVisibility>
         {({ isVisible }) => (
-          <Spring
-            delay={200}
-            to={{
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateX(0)' : 'translateY(100px)',
-            }}
-          >
-            {style => (
-              <ContentWrapper style={style}>
-                <div className="flex-col items-right">
-                <h2 className=" text-3xl font-bold text-white text-right">
-                    We execute software projects
-                    <br />
-                    the right way.
-                  </h2>
-                  <p className=" text-white text-right">{LORUM_IPSUM}</p>
-     
-                </div>
-                {skillProps.map(({ parallax, skill }) => (
-                  <Skill name={skill} />
-                ))}
-              </ContentWrapper>
-            )}
-          </Spring>
+          <div>
+            <ContentWrapper>
+              <h2 className="text-3xl text-white text-left font-bold mb-4 text-center">Our areas of expertise</h2>
+            </ContentWrapper>
+            <Spring
+              delay={200}
+              to={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateX(0)' : 'translateY(100px)',
+              }}
+            >
+              {style => (
+
+                  <ContentWrapper style={style} className="block flex flex-col justify-evenly">
+                    {skillProps.map(({ parallax, skill }, index) => (
+                      <Skill name={skill} flip={index % 2 === 1}/>
+                    ))}
+                  </ContentWrapper>
+              )}
+            </Spring>
+          </div>
         )}
       </VisibilitySensor>
     </Section>

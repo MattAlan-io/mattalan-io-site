@@ -5,25 +5,25 @@ import ContentWrapper from '../../../components/content-wrapper';
 import Section from '../../../components/section';
 import MDImage from '../../../images/md.png';
 
-const Founder = ({ name, imageSrc }) => (
-  <Card>
+const Client = ({ name, imageSrc }) => (
+  <Card className="w-32">
     <img src={imageSrc} className="rounded-lg w-32" />
-    <p className="text-xl text-center mt-4">{name}</p>
+    <p className="text-lg text-center mt-4">{name}</p>
   </Card>
 );
 
-const FoundersSection = () => {
+const ClientsSection = () => {
   return (
-    <Section id="founders" className="text-black bg-white">
+    <Section id="clients" className="text-white bg-maio-grey">
       <ContentWrapper>
-        <h2 className="text-3xl font-bold text-center mb-6">Founders</h2>
+        <h2 className="text-3xl font-bold text-center mb-6">Clients</h2>
         <div className="flex align-center justify-evenly">
-          <Founder name="Matt" imageSrc={MDImage} />
-          <Founder name="Alan" imageSrc={MDImage} />
+          <Client name="carbn.com" imageSrc={MDImage} />
+          <Client name="The GP Locum Agency" imageSrc={MDImage} />
         </div>
       </ContentWrapper>
     </Section>
   );
 };
 
-export default FoundersSection;
+export default ClientsSection;

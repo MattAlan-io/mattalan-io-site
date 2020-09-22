@@ -72,7 +72,10 @@ function IntroSection({ onAnimationCompleting }: Props) {
   //   return () => clearTimeout(handle);
   // });
 
-  const handleGoToContact = () => scrollToSection('contact', 'end');
+  const handleGoToContact = () => {
+    console.log('scrooooll');
+    scrollToSection('contact', 'end');
+  }
 
   const underlineSpringProps = useSpring({
     to: async next => {
@@ -113,7 +116,7 @@ function IntroSection({ onAnimationCompleting }: Props) {
             ))}
           </h1>
           <animated.div className="self-end" style={buttonSpringProps}>
-            <Button  onClick={handleGoToContact}>
+            <Button onClick={handleGoToContact}>
               Got a project?
             </Button>
           </animated.div>
