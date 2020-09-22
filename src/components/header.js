@@ -3,8 +3,8 @@ import { Link } from 'gatsby';
 import React from 'react';
 
 const NavButton = ({ text, to }) => (
-  <Link to={to} className="border-b-2 border-maio-blue text-white mr-6 pb-2">
-    <h3>{text}</h3>
+  <Link to={to} className="border-b-2 border-maio-blue text-white mr-6 pb-2 inline-block">
+    <h3 className="inline" >{text}</h3>
   </Link>
 );
 
@@ -22,13 +22,13 @@ const Header = ({ siteTitle }) => (
     >
       <NavBar>
         <NavButton to="#about" text="About"></NavButton>
-        <NavButton to="#skills" text="Skills"></NavButton>
+        {/* <NavButton to="#skills" text="Skills"></NavButton> */}
         <NavButton to="#projects" text="Projects"></NavButton>
-        <NavButton to="#blog" text="Blog"></NavButton>
+        {/* <NavButton to="#blog" text="Blog"></NavButton> */}
         <NavButton to="#os" text="Open Source"></NavButton>
       </NavBar>
 
-      <h1>{siteTitle}</h1>
+      <h1 className="text-xl text-white">{siteTitle}</h1>
     </div>
   </header>
 );

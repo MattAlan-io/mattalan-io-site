@@ -9,6 +9,9 @@ module.exports = {
       colors: {
         'maio-grey': '#202121',
         'maio-blue': '#259fc8',
+      },
+      fontSize: {
+        huge: '5rem',
       }
     },
   },

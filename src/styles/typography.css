@@ -1,0 +1,12 @@
+
+h1 {
+  @apply pb-6;
+}
+
+h2 {
+  @apply pb-4;
+}
+
+p {
+  @apply pb-2;
+}
